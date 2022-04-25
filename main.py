@@ -2,18 +2,15 @@ import numpy as np
 from PIL import Image
 import sys
 
-def __getTotalPixels(img, array_size):
-    if img.mode == 'RGB':
-        n = 3
-    elif img.mode == 'RGBA':
-        n = 4  
-    return array_size//n
-
 def Encode(src, message, dest):
     img = Image.open(src, 'r')
     array = np.array(list(img.getdata()))
 
-    total_pixels = __getTotalPixels(img=img, array_size=array.size)
+    if img.mode == 'RGB':
+        n = 3
+    elif img.mode == 'RGBA':
+        n = 4  
+    total_pixels = array.size//n
 
     width, height = img.size
     message += "$end$"
@@ -41,7 +38,12 @@ def Decode(src):
     img = Image.open(src, 'r')
     array = np.array(list(img.getdata()))
 
-    total_pixels = __getTotalPixels(img=img, array_size=array.size)
+    if img.mode == 'RGB':
+        n = 3
+    elif img.mode == 'RGBA':
+        n = 4    
+         
+    total_pixels = array.size//n
 
     hidden_bits = ""
     for p in range(total_pixels):
