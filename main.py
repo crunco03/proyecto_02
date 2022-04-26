@@ -1,9 +1,16 @@
 import numpy as np
 from PIL import Image
 import sys
+from getpass4 import getpass
+
+username= "estudiante";
+password= "1234";
+
+
 
 def Encode(src, message, dest):
     img = Image.open(src, 'r')
+    #arreglo para calcular el numero total de pixeles
     array = np.array(list(img.getdata()))
 
     if img.mode == 'RGB':
@@ -65,12 +72,22 @@ def Decode(src):
         
         
 def main():
-    print("1: Encode")
-    print("2: Decode")
+    user= input("hi, please enter your username: ");
+    if user != username:
+        print("Try again")
+    else:
+        pswd= getpass("Enter your password: ")
+        if pswd == password:
+            print("Hello, please enter the option that you want: ")
+            print("h: Encode")
+            print("u: Decode")
+        else:
+            print("Incorrect Password")
+        
 
     func = input()
 
-    if func == '1':
+    if func == 'h':
         print("Enter Source Image Path")
         src = input()
         print("Enter Message to Hide")
@@ -80,7 +97,8 @@ def main():
         print("Encoding...")
         Encode(src, message, dest)
 
-    elif func == '2':
+    elif func == 'u':
+    
         print("Enter Source Image Path")
         src = input()
         print("Decoding...")
