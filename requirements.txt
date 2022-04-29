@@ -1,2 +1,7 @@
+caugetch==0.0.1
+clipboard==0.0.4
+colorama==0.4.4
+getpass4==0.0.14.1
 numpy==1.22.3
 Pillow==9.1.0
+pyperclip==1.8.2

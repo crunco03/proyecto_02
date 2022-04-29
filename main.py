@@ -3,14 +3,13 @@ from PIL import Image
 import sys
 from getpass4 import getpass
 
-username= "estudiante";
-password= "1234";
+username= "estudiante"
+password= "1234"
 
 
 
 def Encode(src, message, dest):
     img = Image.open(src, 'r')
-    #arreglo para calcular el numero total de pixeles
     array = np.array(list(img.getdata()))
 
     if img.mode == 'RGB':
@@ -72,7 +71,7 @@ def Decode(src):
         
         
 def main():
-    user= input("hi, please enter your username: ");
+    user= input("hi, please enter your username: ")
     if user != username:
         print("Try again")
     else:
